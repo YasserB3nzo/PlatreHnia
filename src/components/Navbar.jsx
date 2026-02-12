@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Platform } from 'react-native';
 import {
   View,
   Text,
@@ -10,7 +11,8 @@ import {
   Animated,
   Pressable,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+// Use only Lucide to keep it simple and avoid loading extra font files
+import { Menu, Phone, X } from 'lucide-react'; 
 import { COLORS, FONTS } from '../../constants/Colors';
 
 const NAV_LINKS = [
@@ -28,7 +30,7 @@ export default function Navbar({ onNavigate }) {
   const slideAnim = useRef(new Animated.Value(300)).current;
 
   const handleCall = () => {
-    Linking.openURL('tel:+213000000000');
+    Linking.openURL('tel:+212000000000'); // Note: Updated to Morocco +212
     closeMenu();
   };
   
@@ -42,7 +44,7 @@ export default function Navbar({ onNavigate }) {
     Animated.timing(slideAnim, {
       toValue: 0,
       duration: 300,
-      useNativeDriver: true,
+      useNativeDriver: Platform.OS !== 'web', // FIXED SYNTAX
     }).start();
   };
 
@@ -50,7 +52,7 @@ export default function Navbar({ onNavigate }) {
     Animated.timing(slideAnim, {
       toValue: 300,
       duration: 300,
-      useNativeDriver: true,
+      useNativeDriver: Platform.OS !== 'web', // FIXED SYNTAX
     }).start(() => setIsMenuOpen(false));
   };
 
@@ -73,7 +75,7 @@ export default function Navbar({ onNavigate }) {
 
           {isMobile ? (
             <TouchableOpacity onPress={openMenu}>
-              <Feather name="menu" size={24} color={COLORS.foreground} />
+              <Menu size={24} color={COLORS.foreground} />
             </TouchableOpacity>
           ) : (
             <>
@@ -90,7 +92,7 @@ export default function Navbar({ onNavigate }) {
               </View>
 
               <TouchableOpacity style={styles.callBtn} onPress={handleCall}>
-                <Feather name="phone" size={16} color={COLORS.accentForeground} />
+                <Phone size={16} color={COLORS.accentForeground} />
                 <Text style={styles.callBtnText}>Appelez-nous</Text>
               </TouchableOpacity>
             </>
@@ -108,7 +110,7 @@ export default function Navbar({ onNavigate }) {
             ]}
           >
             <TouchableOpacity style={styles.closeButton} onPress={closeMenu}>
-              <Feather name="x" size={24} color={COLORS.accentForeground} />
+              <X size={24} color={COLORS.accentForeground} />
             </TouchableOpacity>
             {NAV_LINKS.map((link) => (
               <TouchableOpacity
@@ -123,7 +125,7 @@ export default function Navbar({ onNavigate }) {
               style={styles.modalCallBtn}
               onPress={handleCall}
             >
-              <Feather name="phone" size={16} color={COLORS.accentForeground} />
+              <Phone size={16} color={COLORS.accentForeground} />
               <Text style={styles.callBtnText}>Appelez-nous</Text>
             </TouchableOpacity>
           </Animated.View>
@@ -136,10 +138,7 @@ export default function Navbar({ onNavigate }) {
 const getStyles = (width) =>
   StyleSheet.create({
     wrapper: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
+      position: 'relative', // Changed from absolute to prevent overlap issues on web
       backgroundColor: COLORS.background,
       borderBottomWidth: 1,
       borderBottomColor: COLORS.border,
@@ -197,9 +196,8 @@ const getStyles = (width) =>
       fontSize: 14,
       color: COLORS.accentForeground,
     },
-    // Modal Styles
     overlay: {
-      position: 'absolute',
+      position: 'fixed', // Changed from absolute to ensure it covers the whole screen on web
       top: 0,
       left: 0,
       right: 0,
@@ -223,7 +221,7 @@ const getStyles = (width) =>
       width: 300,
       padding: 24,
       paddingTop: 80,
-      elevation: 1000,
+      boxShadow: '-5px 0 15px rgba(0,0,0,0.1)', // Web specific shadow
     },
     closeButton: {
       position: 'absolute',

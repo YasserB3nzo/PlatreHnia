@@ -8,15 +8,15 @@ import {
   Linking,
   useWindowDimensions,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Phone, Mail, MapPin, Truck, Factory } from 'lucide-react';
 import { COLORS, FONTS } from '../../constants/Colors';
 
 const CONTACT_INFO = [
   {
     icon: 'phone',
     label: 'Telephone',
-    value: '+213 000 000 000',
-    action: () => Linking.openURL('tel:+213000000000'),
+    value: '05-24-62-57-62 / 06-68-67-68-06',
+    action: () => Linking.openURL('tel:+212668676806'),
   },
   {
     icon: 'mail',
@@ -26,14 +26,14 @@ const CONTACT_INFO = [
   },
   {
     icon: 'map-pin',
-    label: 'Adresse',
-    value: 'Zone Industrielle, Maroc',
+    label: 'SOCIÉTÉ PLATRE HNIA SIEGE',
+    value: 'ZN°111 LOTISSEMENT JAOUHARA ROUTE HADHRARA . SAFI',
     action: null,
   },
   {
-    icon: 'clock',
-    label: 'Horaires',
-    value: 'Lun - Sam: 8h - 18h',
+    icon: 'truck',
+    label: 'USINE',
+    value: 'KM06 ROUTE SEBT GZOULA. SAFI',
     action: null,
   },
 ];
@@ -73,7 +73,10 @@ export default function Contact({ onLayout }) {
             activeOpacity={item.action ? 0.7 : 1}
           >
             <View style={styles.infoIconCircle}>
-              <Feather name={item.icon} size={18} color={COLORS.accent} />
+              {item.icon === 'phone' && <Phone size={18} color={COLORS.accent} />}
+              {item.icon === 'mail' && <Mail size={18} color={COLORS.accent} />}
+              {item.icon === 'map-pin' && <MapPin size={18} color={COLORS.accent} />}
+              {item.icon === 'truck' && <Factory size={18} color={COLORS.accent} />}
             </View>
             <View style={styles.infoText}>
               <Text style={styles.infoLabel}>{item.label}</Text>

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { ArrowRight } from 'lucide-react';
 import { COLORS, FONTS } from '../../constants/Colors';
 
 export default function Hero({ onNavigate, onLayout }) {
@@ -36,7 +36,7 @@ export default function Hero({ onNavigate, onLayout }) {
               onPress={() => onNavigate?.('produits')}
             >
               <Text style={styles.primaryBtnText}>DECOUVRIR NOS PRODUITS</Text>
-              <Feather name="arrow-right" size={18} color={COLORS.accentForeground} />
+              <ArrowRight size={18} color={COLORS.accentForeground} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.secondaryBtn}

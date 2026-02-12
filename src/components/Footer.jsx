@@ -10,7 +10,7 @@ const NAV_LINKS = [
 ];
 
 const PRODUCT_LINKS = [
-  { label: 'Corniches', id: 'produits' },
+  { label: 'Gibbse', id: 'produits' },
   { label: 'Rosaces', id: 'produits' },
   { label: 'Plaques de Platre', id: 'produits' },
   { label: 'Accessoires', id: 'produits' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Award, Truck, Shield, Heart } from 'lucide-react';
 import { COLORS, FONTS } from '../../constants/Colors';
 
 const ADVANTAGES = [
@@ -46,7 +46,10 @@ export default function Advantages({ onLayout }) {
         {ADVANTAGES.map((item) => (
           <View key={item.title} style={styles.card}>
             <View style={styles.iconCircle}>
-              <Feather name={item.icon} size={22} color={COLORS.accent} />
+              {item.icon === 'award' && <Award size={22} color={COLORS.accent} />}
+              {item.icon === 'truck' && <Truck size={22} color={COLORS.accent} />}
+              {item.icon === 'shield' && <Shield size={22} color={COLORS.accent} />}
+              {item.icon === 'heart' && <Heart size={22} color={COLORS.accent} />}
             </View>
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.cardDescription}>{item.description}</Text>

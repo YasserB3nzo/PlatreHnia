@@ -7,7 +7,7 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { ArrowUpRight } from 'lucide-react';
 import { COLORS, FONTS } from '../../constants/Colors';
 
 const PRODUCTS = [
@@ -64,7 +64,7 @@ export default function Products({ onLayout }) {
             <View style={styles.cardBody}>
               <View style={styles.cardTitleRow}>
                 <Text style={styles.cardTitle}>{product.title}</Text>
-                <Feather name="arrow-up-right" size={18} color={COLORS.accent} />
+                <ArrowUpRight size={18} color={COLORS.accent} />
               </View>
               <Text style={styles.cardDescription}>{product.description}</Text>
             </View>
