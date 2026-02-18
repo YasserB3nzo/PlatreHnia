@@ -16,18 +16,14 @@ const PRODUCTS = [
     description:
       "Un plâtre gros de construction semi-hydraté d'une pureté supérieure à 92%. Conçu pour le moulage de précision, les rosaces et les sculptures ornementales.",
     image: require('../../assets/Gibbs.png'),
+    resizeMode: 'cover',
   },
   {
-    title: 'Rosaces & Ornements',
+    title: 'Moulage Ennaka',
     description:
       "Rosaces de plafond et ornements decoratifs qui apportent une touche d'elegance classique a vos espaces.",
-    image: require('../../assets/rosaces.jpg'),
-  },
-  {
-    title: 'Plaques de Platre',
-    description:
-      "Plaques de platre de haute qualite pour vos travaux de construction et d'amenagement interieur.",
-    image: require('../../assets/plaques.jpg'),
+    image: require('../../assets/Moulage.png'),
+    resizeMode: 'contain',
   },
 ];
 
@@ -59,7 +55,7 @@ export default function Products({ onLayout }) {
             <Image
               source={product.image}
               style={styles.cardImage}
-              resizeMode="cover"
+              resizeMode={product.resizeMode || 'cover'}
             />
             <View style={styles.cardBody}>
               <View style={styles.cardTitleRow}>
